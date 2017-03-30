@@ -1,0 +1,11 @@
+
+
+<div ng-controller="newsListCtrl">
+
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="items in newsSources">
+      <label><input type="checkbox" value="">{{items.name}}</label>
+   </li>
+  </ul>
+    <button type="button" class="btn btn-primary btn-block">Save</button>
+</div>

@@ -1,0 +1,57 @@
+.newSection {
+    width: 90%;
+    box-shadow: 5px 5px 5px #d2cece;
+    padding: 10px 0 10px 10px;
+    font-family: candara;
+    font-size: 12px;
+    margin: auto;
+}
+
+.newSection_title {
+    background-color: #0785ff;
+    padding: 5px;
+    color: aliceblue;
+    font-weight: bold;
+}
+
+.newSection_title div {
+    font-style: italic;
+    font-weight: normal;
+}
+
+.newSection_description {
+    padding: 5px;
+}
+
+.list-group {
+  padding: 0 10px 0 10px;
+}
+
+.list-group-item img {
+    height: 15%;
+    width: 15%;
+    margin-right: 20px;
+}
+
+.list-group-item a[href] {
+   color : black
+}
+
+.list-group-item img.details {
+  height: 10%;
+  width: 10%;
+  padding-bottom: 10px;
+  float: left;
+}
+
+
+ul.header_nav li {
+  display: inline-block;
+  padding: 5px;
+  list-style-type: none;
+  padding-top: 20px;
+}
+
+input[type=checkbox]  {
+   margin: 10px;
+}

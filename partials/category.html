@@ -1,0 +1,8 @@
+<div ng-controller="newsListCtrl">
+    <ul class="list-group" >
+      <li class="list-group-item" ng-repeat="categories in newsCategory">
+         <label><input type="checkbox" value="">{{categories.toUpperCase()}}</label>
+     </li>
+    </ul>
+    <button type="button" class="btn btn-primary btn-block">Filter</button>
+</div>
