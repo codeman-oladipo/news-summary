@@ -1,8 +1,8 @@
-<div ng-controller="newsListCtrl">
+<div ng-controller="filterContent">
     <ul class="list-group" >
       <li class="list-group-item" ng-repeat="categories in newsCategory">
-         <label><input type="checkbox" value="">{{categories.toUpperCase()}}</label>
+         <label><input type="checkbox" id="{{categories}}" value="{{categories}}" ng-click="updateSelection($event)">{{categories.toUpperCase()}} - {{$index}}</label>
      </li>
     </ul>
-    <button type="button" class="btn btn-primary btn-block">Filter</button>
+    <button type="button" class="btn btn-primary btn-block">Make It Happen</button>
 </div>

@@ -2,7 +2,7 @@
 <div class="list-group" ng-controller="newsDetailsCtrl">
   <div class="list-group-item" ng-repeat="items in newsArticles">
     <a href="{{items.url}}">
-    <img src="{{items.urlToImage}}" class="details">
+    <div class="newsImg"><img src="{{items.urlToImage}}"></div>
     <h4 class="list-group-item-heading">{{items.title}}</h4>
     <p class="list-group-item-text">{{items.description}}</p>
     </a>
