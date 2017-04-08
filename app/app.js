@@ -9,15 +9,15 @@
         ) {
               $routeProvider.
                   when("/", {
-                      templateUrl : "partials/home.html"
+                      templateUrl : "./app/partials/home.html"
                       // controller: 'HomeController'
                   }).
                   when("/newsList/:newsID", {
-                      templateUrl : "partials/news_list.html"
+                      templateUrl : "./app/partials/news_list.html"
                       // controller: 'AboutController'
                   }).
                   when("/category", {
-                      templateUrl : "partials/category.html"
+                      templateUrl : "./app/partials/category.html"
                   }).
                   otherwise({
                       redirectTo: '/'
