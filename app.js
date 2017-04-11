@@ -19,6 +19,12 @@
                   when("/category", {
                       templateUrl : "partials/category.html"
                   }).
+                  when("/add_channels", {
+                      templateUrl : "partials/add_channels.html"
+                  }).
+                  when("/favorites", {
+                      templateUrl : "partials/favorites.html"
+                  }).
                   otherwise({
                       redirectTo: '/'
                   });
@@ -42,6 +48,67 @@
        }
     });
 
+    newsApp.controller('saveNewsChannels', function($scope, $http){
+      $scope.channelNames = [];
+      $scope.currentSelection = [];
+
+         var data = $http({
+                     method: 'GET',
+                       url: 'js/data.json'
+                           }).then(function(response) {
+
+                                for (var i in response.data) {
+                                  $scope.channelNames.push( response.data[i].name)
+                                }
+                      // console.log($scope.channelNames)
+                    }, function(response) {
+                 console.log(response)
+              });
+
+
+
+                var htmlLocalStorage = function(){
+
+                         this.saveData = function(){
+                          localStorage.setItem('preferedChannels', JSON.stringify($scope.currentSelection));
+                          console.log(items + "Saved!!!!")
+                         }
+
+                         this.resetAllData = function(){
+                          localStorage.removeItem('preferedChannels');
+                          console.log("Data erased!!!!");
+                         }
+
+                         this.displayData = function() {
+                           var data = JSON.parse(localStorage.getItem('preferedChannels'));
+                           console.log(data);
+                         }
+
+                      }
+
+              var mylocalStorage = new htmlLocalStorage();
+
+              $scope.saveChannels = mylocalStorage.saveData($scope.currentSelection);
+              $scope.displayData = mylocalStorage.displayData;
+              $scope.resetAllData = mylocalStorage.resetAllData;
+
+
+
+
+              $scope.updateSelection = function($event){
+                var checkboxValue = $event.target.id;
+                    if ($scope.currentSelection.indexOf(checkboxValue) === -1) {
+                         $scope.currentSelection.push(checkboxValue);
+                    } else {
+                        $scope.currentSelection.splice($scope.currentSelection.indexOf(checkboxValue), 1)
+                    }
+                        console.log($scope.currentSelection);
+
+                    }
+
+
+          });
+
     newsApp.service('categoryService', function(){
         var selectedCategory = [];
         function setCategory(arr){
@@ -59,10 +126,10 @@
 
 
     newsApp.controller('newsDetailsCtrl', function($scope, $http, $routeParams){
-        $scope.trimUrlWithDashOrbarckets = function(str){
-            return str.toLowerCase().replace(/\(\)/ /gi,'-');
+        var trimUrlWithDashOrbarckets = function(str){
+        return str.toLowerCase().replace(/([()])/g, "").replace(/\s/g, '-');
         }
-        $scope.source = $scope.trimUrlWithDashOrbarckets($routeParams.newsID) || 'bbc-news';
+        $scope.source = trimUrlWithDashOrbarckets($routeParams.newsID) || 'bbc-news';
         console.log($scope.source)
         $scope.newsArticles = [];
         $scope.getArticles = function(source){
@@ -85,13 +152,10 @@
 
     newsApp.controller('newsListCtrl', function($scope, newsService, categoryService){
     $scope.newsSources = [];
-    //console.log(UserPreferenceService.getCategory);
-
-
-     newsService.getSources()
+    newsService.getSources()
        .then(function(response){
          for (var item in response.data.sources){
-          $scope.newsSources.push(response.data.sources[item])
+          $scope.newsSources.push(response.data.sources[item]);
          }
        })
        .catch(function(response){
@@ -118,11 +182,9 @@
               categoryService.setCategory($scope.currentSelection);
           }
 
-      $scope.selectPrevious = function(){
+      $scope.resetSelection = function(){}
 
-      }
-
-  })
+  });
 
 
 })();

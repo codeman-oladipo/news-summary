@@ -1,11 +1,12 @@
-
-
-<div ng-controller="newsListCtrl">
-
+<div ng-controller="saveNewsChannels">
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="items in newsSources">
-      <label><input type="checkbox" value="">{{items.name}}</label>
+    <li class="list-group-item" ng-repeat="items in channelNames">
+      <label><input type="checkbox" id="{{items}}" ng-click="updateSelection($event)">{{items}}</label>
    </li>
   </ul>
-    <button type="button" class="btn btn-primary btn-block">Save</button>
+  <ul class="header_nav">
+    <button role="presentation" ng-click="saveChannels">Save</button>
+    <button role="presentation" ng-click="displayData()">Display</button>
+    <button role="presentation" ng-click="resetAllData()">Reset</button>
+  </ul>
 </div>
