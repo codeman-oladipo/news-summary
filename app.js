@@ -52,6 +52,7 @@
       $scope.channelNames = [];
       $scope.currentSelection = [];
 
+
          var data = $http({
                      method: 'GET',
                        url: 'js/data.json'
@@ -60,7 +61,7 @@
                                 for (var i in response.data) {
                                   $scope.channelNames.push( response.data[i].name)
                                 }
-                      // console.log($scope.channelNames)
+                    //  console.log($scope.channelNames)
                     }, function(response) {
                  console.log(response)
               });
@@ -70,27 +71,35 @@
                 var htmlLocalStorage = function(){
 
                          this.saveData = function(){
-                          localStorage.setItem('preferedChannels', JSON.stringify($scope.currentSelection));
-                          console.log(items + "Saved!!!!")
+                           localStorage.setItem('preferedChannels', JSON.stringify($scope.currentSelection));
+                           console.log($scope.currentSelection + " - Saved!!!!")
                          }
 
                          this.resetAllData = function(){
-                          localStorage.removeItem('preferedChannels');
-                          console.log("Data erased!!!!");
+                           localStorage.removeItem('preferedChannels');
+                           console.log("Data erased!!!!");
                          }
 
-                         this.displayData = function() {
+                         this.displayData = function(){
                            var data = JSON.parse(localStorage.getItem('preferedChannels'));
+                           $scope.favorites = data;
+
                            console.log(data);
+                           return data;
                          }
 
                       }
 
-              var mylocalStorage = new htmlLocalStorage();
 
-              $scope.saveChannels = mylocalStorage.saveData($scope.currentSelection);
-              $scope.displayData = mylocalStorage.displayData;
-              $scope.resetAllData = mylocalStorage.resetAllData;
+
+
+
+                  var mylocalStorage = new htmlLocalStorage();
+                  $scope.saveChannels = mylocalStorage.saveData;
+                  $scope.displayData = mylocalStorage.displayData;
+                  $scope.resetAllData = mylocalStorage.resetAllData;
+                  mylocalStorage.displayData();
+
 
 
 
@@ -103,8 +112,17 @@
                         $scope.currentSelection.splice($scope.currentSelection.indexOf(checkboxValue), 1)
                     }
                         console.log($scope.currentSelection);
-
                     }
+
+
+
+
+
+                    // if ($scope.favorites != ""){
+                    //   for (var i = 0 ; i <= $scope.channelNames.length; i++){
+                    //
+                    //   }
+                    // }
 
 
           });
