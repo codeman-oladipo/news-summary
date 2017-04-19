@@ -48,6 +48,35 @@
        }
     });
 
+
+//    newsApp.service('html5localStorage', function(){
+//             var self = this;
+//             var vm = {};
+//             vm.saveData = saveData;
+//             vm.resetAllData = resetAllData;
+//             vm.displayData = displayData;
+//
+//
+//          function saveData(item){
+//            localStorage.setItem('localStorageIdentifier', JSON.stringify(item));
+//            console.log(item + " - Saved!!!!")
+//          }
+//
+//          function displayData(){
+//            return JSON.parse(localStorage.getItem('localStorageIdentifier'));
+//          }
+//
+//          function resetAllData(){
+//            localStorage.removeItem('localStorageIdentifier');
+//            console.log("Data erased!!!!");
+//          }
+//
+//        return self;
+//
+//        });
+
+
+
     newsApp.controller('saveNewsChannels', function($scope, $http){
       $scope.channelNames = [];
       $scope.currentSelection = [];
@@ -65,42 +94,48 @@
                     }, function(response) {
                  console.log(response)
               });
+        
+        
 
 
 
-                var htmlLocalStorage = function(){
-
-                         this.saveData = function(){
-                           localStorage.setItem('preferedChannels', JSON.stringify($scope.currentSelection));
-                           console.log($scope.currentSelection + " - Saved!!!!")
-                         }
-
-                         this.resetAllData = function(){
-                           localStorage.removeItem('preferedChannels');
-                           console.log("Data erased!!!!");
-                         }
-
-                         this.displayData = function(){
-                           var data = JSON.parse(localStorage.getItem('preferedChannels'));
-                           $scope.favorites = data;
-
-                           console.log(data);
-                           return data;
-                         }
-
-                      }
-
-
-
+                 var htmlLocalStorage = function(){
+                
+                          this.saveData = function(){
+                            localStorage.setItem('preferedChannels', JSON.stringify($scope.currentSelection));
+                            console.log($scope.currentSelection + " - Saved!!!!")
+                          }
+                
+                          this.resetAllData = function(){
+                            localStorage.removeItem('preferedChannels');
+                            console.log("Data erased!!!!");
+                          }
+                
+                          this.displayData = function(){
+                            var data = JSON.parse(localStorage.getItem('preferedChannels'));
+                            $scope.favorites = data;
+                
+                            console.log(data);
+                            return data;
+                          }
+                
+                       }
+                
 
 
-                  var mylocalStorage = new htmlLocalStorage();
-                  $scope.saveChannels = mylocalStorage.saveData;
-                  $scope.displayData = mylocalStorage.displayData;
-                  $scope.resetAllData = mylocalStorage.resetAllData;
-                  mylocalStorage.displayData();
 
 
+                   var mylocalStorage = new htmlLocalStorage();
+                   $scope.saveChannels = mylocalStorage.saveData;
+                   $scope.displayData = mylocalStorage.displayData;
+                   $scope.resetAllData = mylocalStorage.resetAllData;
+                   mylocalStorage.displayData();
+
+
+//                  $scope.saveChannels = html5localStorage.saveData($scope.currentSelection);
+//                  $scope.resetAllData = html5localStorage.resetAllData;
+//                  $scope.displayData = html5localStorage.displayData;
+//                  html5localStorage.displayData();
 
 
 
@@ -116,11 +151,14 @@
 
 
 
-
-
-                    // if ($scope.favorites != ""){
-                    //   for (var i = 0 ; i <= $scope.channelNames.length; i++){
                     //
+                    //
+                    // if ($scope.favorites != ""){
+                    //   for (var i = 0 ; i <= $scope.channelNames.length; i++) {
+                    //      if ($scope.channelNames[i] == $scope.favorites[i]) {
+                    //
+                    //        console.log($scope.channelNames[i]);
+                    //      }
                     //   }
                     // }
 
@@ -175,6 +213,7 @@
          for (var item in response.data.sources){
           $scope.newsSources.push(response.data.sources[item]);
          }
+        console.log($scope.newsSources);
        })
        .catch(function(response){
           console.log(response);
