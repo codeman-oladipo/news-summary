@@ -1,0 +1,14 @@
+<div ng-controller="filterContent">
+    <ul class="list-group" >
+      <li class="list-group-item" ng-repeat="categories in newsCategory">
+         <label><input type="checkbox" id="{{categories}}" value="{{categories}}" ng-click="updateSelection($event)">{{categories.toUpperCase()}}</label>
+     </li>
+    </ul>
+ <ul class="nav nav-pills">
+   <ul class="header_nav">
+     <li role="presentation"><a href="#">Make it Happen</a></li>
+     <!-- <li role="presentation"><a href="index.html#!/category">Reset</a></li> -->
+   </ul>
+
+</ul>
+</div>

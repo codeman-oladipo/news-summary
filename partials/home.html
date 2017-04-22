@@ -1,0 +1,7 @@
+<div ng-controller="newsListCtrl">
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="items in newsSources">
+     <a href="http://127.0.0.1:8887/index.html#!/newsList/{{items.name}}">{{items.name}} | <span class="text-capitalize">{{items.category }}</span></a>
+   </li>
+  </ul>
+</div>
