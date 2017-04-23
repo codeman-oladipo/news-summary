@@ -2,17 +2,22 @@
   "name": "news24-v.1.0",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "build": "babel src -d dist"
-     },
-  "scripts" : {
-    "build" : "babel --presets es2015 src -d dist" 
-   },
-  "author": "Adebanji Oguntade",
+    "build": "babel --presets es2015 src -d dist",
+    "start": "node server.js"
+  },
+  "author": "TEAM SPACEMAN",
   "license": "ISC",
   "dependencies": {
     "babel-cli": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1"
+    "babel-preset-es2015": "^6.24.1",
+    "express": "^4.15.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "path": "^0.12.7",
+    "webpack": "^2.4.1"
   }
 }
